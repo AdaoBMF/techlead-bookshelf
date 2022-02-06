@@ -1,0 +1,151 @@
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 py-5">
+    <div class="col-lg-7 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 mb-3">Seja bem vindo ao Bookshelf</h1>
+      <p class="col-lg-10 fs-4">
+          Este é um espaço desenvolvido para que possamos compartilhar nossos livros
+        prediletos e também buscar as indicações de livros dos outros
+        usuários.<br />  Sinta-se à vontade para cadastrar quantos livros quiser.
+      </p>
+    </div>
+    <div class="col-md-10 mx-auto col-lg-5">
+      <form *ngIf="loginOrRegister" novalidate [formGroup]="loginForm" class="p-4  p-md-5 border rounded-3 bg-light">
+        <div class="alert alert-danger" role="alert" *ngIf="loginSubmitted && loginFail">
+          E-mail e/ou senha incorretos
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="mail"
+            formControlName="mail"
+            placeholder="seuemail@examplo.com"
+            [ngClass]="{ 'is-invalid': loginSubmitted && hasLoginError('mail') }"
+          />
+          <label for="mail">Email do Usuário</label>
+          <div class="invalid-feedback" *ngIf="hasLoginError('mail')?.['required']">
+            Campo obrigatório
+          </div>
+          <div class="invalid-feedback" *ngIf="hasLoginError('mail')?.['email']">
+            Não é um e-mail válido
+          </div>
+          <div class="invalid-feedback" *ngIf="hasLoginError('mail')?.['maxlength']">
+            Máximo de caracteres( {{hasLoginError('mail')?.['maxlength'].requiredLength}} )
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            formControlName="password"
+            placeholder="Senha"
+            [ngClass]="{ 'is-invalid': loginSubmitted && hasLoginError('password') }"
+          />
+          <label for="password">Senha</label>
+          <div class="invalid-feedback" *ngIf="hasLoginError('password')?.['required']">
+            Campo obrigatório
+          </div>
+          <div class="invalid-feedback" *ngIf="hasLoginError('password')?.['minlength']">
+            Mínimo de caracteres( {{hasLoginError('password')?.['minlength'].requiredLength}} )
+          </div>
+          <div class="invalid-feedback" *ngIf="hasLoginError('password')?.['maxlength']">
+            Máximo de caracteres( {{hasLoginError('password')?.['maxlength'].requiredLength}} )
+          </div>
+        </div>
+        <div class="align-items-center Link mb-3">
+          <p>
+            Não tem uma conta?
+            <a href="#" (click)="isLoginOrRegister()">Registrar</a>
+          </p>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" (click)="onLogin()" type="submit">
+          Login
+        </button>
+        <hr class="my-4" />
+      </form>
+
+      <form *ngIf="!loginOrRegister" [formGroup]="registerForm" novalidate class="p-4 p-md-5 border rounded-3 bg-light needs-validation">
+        <div class="alert alert-success" role="alert" *ngIf="isRegistered">
+          Usuário {{registerForm.value.userName}} cadastrado
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="registerSubmitted && registerFail">
+          {{failMessage}}
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="userName"
+            formControlName="userName"
+            placeholder="name@example.com"
+            [ngClass]="{ 'is-invalid': registerSubmitted && hasRegisterError('userName') }"
+          />
+          <label for="userName">Nome de Usuário</label>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('userName')?.['required']">
+            Campo obrigatório
+          </div>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('userName')?.['pattern']">
+            Não use caracteres especiais ou espaços em branco
+          </div>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('userName')?.['minlength']">
+            Mínimo de caracteres( {{hasRegisterError('userName')?.['minlength'].requiredLength}} )
+          </div>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('userName')?.['maxlength']">
+            Máximo de caracteres( {{hasRegisterError('userName')?.['maxlength'].requiredLength}} )
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="mail"
+            formControlName="mail"
+            placeholder="name@example.com"
+            [ngClass]="{ 'is-invalid': registerSubmitted && hasRegisterError('mail') }"
+          />
+          <label for="mail">Insira seu e-mail</label>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('mail')?.['required']">
+            Campo obrigatório
+          </div>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('mail')?.['email']">
+            Não é um e-mail válido
+          </div>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('mail')?.['maxlength']">
+            Máximo de caracteres( {{hasRegisterError('mail')?.['maxlength'].requiredLength}} )
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            formControlName="password"
+            placeholder="senha"
+            [ngClass]="{ 'is-invalid': registerSubmitted && hasRegisterError('password') }"
+          />
+          <label for="password">Insira uma senha</label>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('password')?.['required']">
+            Campo obrigatório
+          </div>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('password')?.['minlength']">
+            Mínimo de caracteres( {{hasRegisterError('password')?.['minlength'].requiredLength}} )
+          </div>
+          <div class="invalid-feedback" *ngIf="hasRegisterError('password')?.['maxlength']">
+            Máximo de caracteres( {{hasRegisterError('password')?.['maxlength'].requiredLength}} )
+          </div>
+        </div>
+        <div class="align-items-center Link mb-3">
+          <p>
+            Já tem uma conta?
+            <a href="#" (click)="isLoginOrRegister()">Fazer login</a>
+          </p>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" (click)="onRegister()" type="submit">
+          Registrar
+        </button>
+        <hr class="my-4" />
+      </form>
+    </div>
+  </div>
+</div>

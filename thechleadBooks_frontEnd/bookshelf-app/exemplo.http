@@ -1,0 +1,35 @@
+GET http://localhost:3000/books
+
+###
+
+GET http://localhost:3000/users
+
+
+
+###
+
+POST http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "userName": "AliceTrisch",
+    "mail": "alicetctrisvh@gmail.com",
+    "admin": 0
+  }
+
+###
+
+PUT http://localhost:3000/books/2 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "O Sr. dos Anéis",
+    "author": "J.R.R. Tolkien",
+    "uploadDate": "19/07/2021",
+    "user": 2
+}
+
+###
+
+DELETE http://localhost:3000/books/3 HTTP/1.1
+content-type: application/json

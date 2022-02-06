@@ -1,0 +1,68 @@
+<div id="upload">
+  <div id="upload-showcase" class="p-5 mb-4 bg-light mt-5 rounded-3 container">
+    <div class="container-fluid py-5">
+
+      <h1 class="title">
+        <span >
+          Bookshelf          
+          <small (click)="backPage()" role="button" class="text-muted fs-6">
+            <i class="bi fs-6 bi-caret-left"></i>
+            voltar
+          </small>
+        </span></h1>
+
+      <div class="alert alert-success" role="alert" *ngIf="isSent">
+        {{successMsg}}
+      </div>
+
+      <form class="row g-3 needs-validation" novalidate [formGroup]="form">
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            class="form-control"
+            id="titulo"
+            placeholder="Titulo"
+            formControlName="title"
+            [ngClass]="{ 'is-invalid': submitted && hasError('title')}"
+          />
+          <label for="title">Título</label>
+          <div class="invalid-feedback" *ngIf="hasError('title')?.['required']">
+            Campo obrigatório
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('title')?.['minlength']">
+            Mínimo de caracteres( {{hasError('title')?.['minlength'].requiredLength}} )
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('title')?.['maxlength']">
+            Máximo de caracteres( {{hasError('title')?.['maxlength'].requiredLength}} )
+          </div>
+        
+        </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="autor"
+            placeholder="Autor"
+            formControlName="author"
+            [ngClass]="{ 'is-invalid': submitted && hasError('author') }"
+          />
+          <label for="author">Autor</label>
+          <div class="invalid-feedback" *ngIf="hasError('author')?.['required']">
+            Campo obrigatório
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('author')?.['minlength']">
+            Mínimo de caracteres( {{hasError('author')?.['minlength'].requiredLength}} )
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('author')?.['maxlength']">
+            Máximo de caracteres( {{hasError('author')?.['maxlength'].requiredLength}} )
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Enviar</button>
+          <button type="button" class="btn btn-default ms-2" (click)="onCancel()" >Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

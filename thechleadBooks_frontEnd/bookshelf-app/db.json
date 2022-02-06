@@ -1,0 +1,72 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "The God Father",
+      "author": "Mario Puzo",
+      "uploadDate": "01/02/2021",
+      "user": {
+        "id": 1,
+        "userName": "Admin",
+        "mail": "admin@mail.com",
+        "password": "123456",
+        "admin": 1
+      }
+    },
+    {
+      "title": "O Sr. dos Anéis",
+      "author": "J.R.R. Tolkien",
+      "uploadDate": "19/07/2021",
+      "user": {
+        "id": 2,
+        "userName": "UsuarioComum",
+        "mail": "usuariocomum@email.com",
+        "password": "123456",
+        "admin": 0
+      },
+      "id": 2
+    },
+    {
+      "id": 3,
+      "title": "A Majorata",
+      "author": "Giacono di Constantinn",
+      "uploadDate": "02/02/2022",
+      "user": {
+        "id": 2,
+        "userName": "UsuarioComum",
+        "mail": "usuariocomum@email.com",
+        "password": "123456",
+        "admin": 0
+      }
+    },
+    {
+      "id": 4,
+      "title": "A Candelária de Ozéias",
+      "author": "Johnny Begood",
+      "uploadDate": "02/02/2022",
+      "user": {
+        "id": 2,
+        "userName": "UsuarioComum",
+        "mail": "usuariocomum@email.com",
+        "password": "123456",
+        "admin": 0
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "userName": "Admin",
+      "mail": "admin@mail.com",
+      "password": "123456",
+      "admin": 1
+    },
+    {
+      "userName": "UsuarioComum",
+      "mail": "usuariocomum@email.com",
+      "password": "123456",
+      "admin": 0,
+      "id": 2
+    }
+  ]
+}

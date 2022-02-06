@@ -1,0 +1,12 @@
+#not-found{
+  width: 512px;
+  height: 512px;
+  background: url('../../../assets/imgs/johnTravolta.gif');
+  background-repeat: no-repeat;
+  padding: 2em;
+  margin-top: 4em;
+}
+h1{
+  text-align: center;
+  margin-top: 2em;
+}

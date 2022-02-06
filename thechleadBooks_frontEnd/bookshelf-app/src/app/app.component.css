@@ -1,0 +1,29 @@
+main{
+  height: 100%;
+}
+/* primary color=> #0d6efd */
+#navbar {
+  background-color: darkgray;
+  border-radius: 3px;
+  border: solid 2px #ea6113;
+}
+
+#navbar-title {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2em;
+  font-family: 'Rowdies', cursive;
+  color: #ea6113;
+}
+
+#shelf {
+  color: #ea6113;
+  font-weight: bolder;
+}
+
+#footer {
+  background-color: darkgray;
+  border-radius: 3px;
+  border: solid 2px #ea6113;
+  color: #ea6113 !important; 
+}

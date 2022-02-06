@@ -1,0 +1,68 @@
+<div id="admin" class="container ">
+  <div id="admin-showcase" class="p-5 my-4 bg-light rounded-3 container">
+    <div class="container-fluid py-2">
+      <div class="d-flex flex-wrap">
+        <h1 class="title">
+          Bookshelf<small class="text-success"> - admin area</small>
+          <button type="button" class="btn btn-sm btn-outline-info px-3 my-2  ms-3" (click)="onRefresh()">
+            <i class="bi bi-arrow-repeat"></i>          
+          </button>
+        </h1>
+      
+        <button type="button" class="btn btn-info p-2 ms-auto" (click)="onUpload()">
+          Adicionar Livro <i class="bi bi-book"></i>
+        </button>
+      </div>
+      <div class="d-flex mt-2">
+        <h4 class="wellcome my-2">Bem vindo(a) {{loggedUser.userName}} </h4><span class="text-muted ms-3 mt-1 pt-2" role="button" (click)="logout()">Logout</span>
+      </div>
+      
+      <table class="table p-2 mt-3" style="border-radius: 1rem" *ngIf="books$ | async as books; else loadingError">
+        <thead>
+          <tr>
+            <th>Título<i *ngIf="sortParam != compareTitle" class="bi bi-sort-down-alt ms-3 sort-icon" title="Ordenar" (click)="orderByTitle()"></i></th>
+            <th>Autor<i *ngIf="sortParam != compareAuthor" class="bi bi-sort-down-alt ms-3 sort-icon" title="Ordenar" (click)="orderByAuthor()"></i></th>
+            <th>Data de inclusão<i *ngIf="sortParam != compareUploadDate" class="bi bi-sort-down-alt ms-3 sort-icon" title="Ordenar" (click)="orderByUploadDate()"></i></th>
+            <th>Usuário<i *ngIf="sortParam != compareUserName" class="bi bi-sort-down-alt ms-3 sort-icon" title="Ordenar" (click)="orderByUserName()"></i></th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td>{{ book.title }} </td>
+            <td>{{ book.author }} </td>
+            <td>{{ book.uploadDate.split('-').reverse().join('-') }} </td>
+            <td>{{ book.user.userName }} </td>
+            <td>
+              <button type="button" class="btn-s btn-info rounded" title="Editar">
+                <i class="bi bi-pencil" (click)="onEdit(book.id)" ></i>
+              </button>
+              <button type="button" class="btn-s btn-danger rounded  ms-2" (click)="onDelete(book)" title="Excluir">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #loadingError >
+
+        <div *ngIf="error$ | async; else loading" >
+          Não foi possível carregar os livros. 
+        </div>
+        <ng-template #loading>
+          <div class="spinner-border text-primary ms-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #deleteModal>
+  <div class="modal-body text-center">
+    <p>Confirmar exclusão do Livro?</p>
+    <button type="button" class="btn btn-default" (click)="onConfirmDelete()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="onDeclineDelete()" >Não</button>
+  </div>
+</ng-template>
